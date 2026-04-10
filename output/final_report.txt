@@ -1,0 +1,19 @@
+Q1: Revenue by category could not be calculated.
+
+Q2: 
+1. Central: 5.44 days average
+2. North: 5.70 days average
+3. West: 5.96 days average
+4. South: 12.64 days average
+5. East: 12.94 days average
+
+Q3: duplicate_order_ids=91, quantity_outliers=84, price_format_errors=248, invalid_discounts=80, total_null_cells=2138
+
+Q4: 
+1. Cash on Delivery: 10.38%
+2. Credit Card: 10.88%
+3. UPI: 11.26%
+4. Net Banking: 11.72%
+5. Debit Card: 12.29%
+
+Q5: The business exhibits strong delivery performance in Central, North, and West regions, averaging around 5-6 days, though East and South regions lag significantly with over 12-day averages. Return rates show variation across payment methods, with Cash on Delivery having the lowest at 10.38% and Debit Card the highest at 12.29%, highlighting potential differences in customer commitment or product perception. Despite unidentified revenue trends, a significant number of operational discrepancies, including duplicate orders, quantity outliers, and invalid discounts, suggest underlying data quality and process adherence challenges needing immediate attention.

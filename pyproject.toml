@@ -1,0 +1,27 @@
+[project]
+name = "e_commerce_data_analytics_automation"
+version = "0.1.0"
+description = "e_commerce_data_analytics_automation using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[anthropic,file-processing,google-genai,litellm,tools]==1.13.0",
+]
+
+[project.scripts]
+e_commerce_data_analytics_automation = "e_commerce_data_analytics_automation.main:run"
+run_crew = "e_commerce_data_analytics_automation.main:run"
+train = "e_commerce_data_analytics_automation.main:train"
+replay = "e_commerce_data_analytics_automation.main:replay"
+test = "e_commerce_data_analytics_automation.main:test"
+run_with_trigger = "e_commerce_data_analytics_automation.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+
+[tool.uv]
+override-dependencies = ["litellm<=1.82.6"]

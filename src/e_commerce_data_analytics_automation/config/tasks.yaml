@@ -1,0 +1,60 @@
+---
+duplicate_and_missing_data_detection:
+  description: 'Use data_analyzer tool with file_path="{csv_file_path}" and analysis_type="duplicates". Return the result exactly as provided.'
+  expected_output: 'duplicate_order_ids=N, total_null_cells=M'
+  agent: duplicate_and_missing_data_detector
+outlier_and_format_validation:
+  description: 'Use data_analyzer tool with file_path="{csv_file_path}" and analysis_type="outliers". Return the result exactly as provided.'
+  expected_output: 'quantity_outliers=N, price_format_errors=M'
+  agent: outlier_and_format_validator
+business_rule_validation:
+  description: 'Use data_analyzer tool with file_path="{csv_file_path}" and analysis_type="discounts". Return the result exactly as provided.'
+  expected_output: 'invalid_discounts=N'
+  agent: business_rule_validator
+revenue_analysis_by_category:
+  description: 'Use data_analyzer tool with file_path="{csv_file_path}" and analysis_type="revenue". Return all results exactly as provided.'
+  expected_output: 'List of categories with revenue values in format: category_name: $value'
+  agent: e_commerce_data_analyst
+  context:
+  - duplicate_and_missing_data_detection
+  - outlier_and_format_validation
+  - business_rule_validation
+delivery_time_analysis_by_region:
+  description: 'Use data_analyzer tool with file_path="{csv_file_path}" and analysis_type="delivery_time". Return all results exactly as provided.'
+  expected_output: 'List of regions with average delivery days in format: region_name: X.XX days average'
+  agent: e_commerce_data_analyst
+  context:
+  - duplicate_and_missing_data_detection
+  - outlier_and_format_validation
+  - business_rule_validation
+return_rate_analysis_by_payment_method:
+  description: 'Use data_analyzer tool with file_path="{csv_file_path}" and analysis_type="return_rate". Return all results exactly as provided.'
+  expected_output: 'List of payment methods with return rates in format: payment_method: X.XX%'
+  agent: e_commerce_data_analyst
+  context:
+  - duplicate_and_missing_data_detection
+  - outlier_and_format_validation
+  - business_rule_validation
+business_health_summary_report:
+  description: 'Create final report combining all results. Use EXACTLY this format with no other text:
+
+    Q1: [paste ranked revenue by category from previous task]
+    Q2: [paste ranked delivery times by region from previous task]
+    Q3: duplicate_order_ids=X, quantity_outliers=Y, price_format_errors=Z, invalid_discounts=W, total_null_cells=V
+    Q4: [paste ranked return rates by payment method from previous task]
+    Q5: [write exactly 3 sentences analyzing the business health]'
+  expected_output: 'EXACTLY formatted report:
+    Q1: [revenue rankings]
+    Q2: [delivery time rankings]
+    Q3: [5 metrics]
+    Q4: [return rate rankings]
+    Q5: [3 sentences]'
+  agent: business_intelligence_reporter
+  output_file: output/final_report.txt
+  context:
+  - duplicate_and_missing_data_detection
+  - outlier_and_format_validation
+  - business_rule_validation
+  - revenue_analysis_by_category
+  - delivery_time_analysis_by_region
+  - return_rate_analysis_by_payment_method
